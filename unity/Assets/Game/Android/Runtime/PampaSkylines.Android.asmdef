@@ -1,0 +1,10 @@
+{
+  "name": "PampaSkylines.Android",
+  "rootNamespace": "PampaSkylines.Android",
+  "references": [
+    "PampaSkylines.Core",
+    "PampaSkylines.Commands",
+    "PampaSkylines.Simulation",
+    "PampaSkylines.SaveSync"
+  ]
+}

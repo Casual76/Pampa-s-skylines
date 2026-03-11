@@ -1,0 +1,44 @@
+{
+  "zoneDefinitions": [
+    {
+      "zoneType": "Residential",
+      "spawnGrowthThreshold": 1.0,
+      "upgradeGrowthThreshold": 2.0,
+      "maxLevel": 3,
+      "baseResidents": 12,
+      "baseJobs": 0,
+      "upgradeResidents": 8,
+      "upgradeJobs": 0
+    },
+    {
+      "zoneType": "Commercial",
+      "spawnGrowthThreshold": 1.0,
+      "upgradeGrowthThreshold": 2.0,
+      "maxLevel": 3,
+      "baseResidents": 0,
+      "baseJobs": 8,
+      "upgradeResidents": 0,
+      "upgradeJobs": 6
+    },
+    {
+      "zoneType": "Industrial",
+      "spawnGrowthThreshold": 1.0,
+      "upgradeGrowthThreshold": 2.0,
+      "maxLevel": 3,
+      "baseResidents": 0,
+      "baseJobs": 10,
+      "upgradeResidents": 0,
+      "upgradeJobs": 6
+    },
+    {
+      "zoneType": "Office",
+      "spawnGrowthThreshold": 1.0,
+      "upgradeGrowthThreshold": 2.0,
+      "maxLevel": 3,
+      "baseResidents": 0,
+      "baseJobs": 12,
+      "upgradeResidents": 0,
+      "upgradeJobs": 6
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "version": "v4-demo",
+  "roadsFile": "roads.json",
+  "servicesFile": "services.json",
+  "zonesFile": "zones.json",
+  "economyFile": "economy.json",
+  "progressionFile": "progression.json",
+  "eventsFile": "events.json"
+}

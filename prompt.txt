@@ -1,0 +1,114 @@
+**Handoff**
+Progetto: city builder stile Cities: Skylines, monorepo `Unity 6 + C#` per PC/Android companion, con backend `Node/TypeScript` per auth/sync.  
+Repo root: [README.md](/C:/Pampa's%20skylines/README.md)
+
+**Aggiornamento stato (2026-03-10)**
+- Questa nota handoff contiene parti storiche ormai superate.
+- Lo stato corrente include scena PC bootstrap giocabile, HUD runtime, eventi, progressione e cataloghi `v4-demo`.
+- La fonte di verita aggiornata e `README.md` + `docs/architecture.md` + `unity/Assets/Game/Data/Simulation`.
+
+**Cosa è già stato fatto**
+- Monorepo bootstrap completato con cartelle `unity`, `backend`, `docs`.
+- Core dominio C# impostato e separato dalla UI in [unity/Assets/Game/Core/Runtime](/C:/Pampa's%20skylines/unity/Assets/Game/Core/Runtime).
+- Comandi condivisi definiti in [unity/Assets/Game/Commands/Runtime](/C:/Pampa's%20skylines/unity/Assets/Game/Commands/Runtime).
+- Simulazione base implementata in [unity/Assets/Game/Simulation/Runtime](/C:/Pampa's%20skylines/unity/Assets/Game/Simulation/Runtime):
+  - `SimulationEngine`
+  - `CommandExecutor`
+  - `DemandModel`
+  - `UtilityCoverageModel`
+  - `GrowthModel`
+  - `TrafficModel`
+  - `RoadPathFinder`
+- Determinismo migliorato:
+  - niente `Guid.NewGuid()` dentro la simulazione per entità runtime
+  - introdotto `DeterministicIdGenerator`
+  - introdotti `CommandExecutionResult`, `SimulationFrameReport`, `CommandReplayLog`, `CommandReplayEngine`
+  - hashing canonico dello stato/snapshot in [SnapshotHashing.cs](/C:/Pampa's%20skylines/unity/Assets/Game/Core/Runtime/SnapshotHashing.cs)
+- Configurazione gameplay esterna introdotta:
+  - `SimulationConfig`, `SimulationConfigLoader`, `SimulationCatalogManifest`
+  - cataloghi JSON in [unity/Assets/Game/Data/Simulation](/C:/Pampa's%20skylines/unity/Assets/Game/Data/Simulation)
+  - file presenti: `manifest.json`, `roads.json`, `services.json`, `zones.json`, `economy.json`
+- Save/sync C# esteso in [unity/Assets/Game/SaveSync/Runtime](/C:/Pampa's%20skylines/unity/Assets/Game/SaveSync/Runtime):
+  - `CitySnapshot` ora include `createdAtUtc`, `savedAtUtc`, `clientId`, `commandCount`, `contentHash`, `metadata`
+  - `SyncHead` ora include `clientId` e `commandCount`
+  - `CitySaveCodec` calcola/verifica hash
+  - `CitySnapshotMigrator` introdotto
+  - `LocalCitySaveStore` ora ha manifest locale, backup index e recovery
+- Session wrappers PC/Android aggiornati in:
+  - [PcSimulationSession.cs](/C:/Pampa's%20skylines/unity/Assets/Game/PC/Runtime/PcSimulationSession.cs)
+  - [AndroidCompanionSession.cs](/C:/Pampa's%20skylines/unity/Assets/Game/Android/Runtime/AndroidCompanionSession.cs)
+- Backend Node aggiornato in [backend/src](/C:/Pampa's%20skylines/backend/src):
+  - auth JWT e refresh
+  - profile
+  - `GET /city/head`
+  - `PUT /city/snapshot`
+  - `GET /city/snapshot/:version`
+  - `GET /version-manifest`
+- Backend sync ora supporta:
+  - upload idempotente
+  - `duplicate_version`
+  - `stale_head`
+  - `checksum_mismatch`
+  - `version_conflict`
+- Migrazione snapshot lato backend implementata in [backend/src/migrations/city-snapshot.ts](/C:/Pampa's%20skylines/backend/src/migrations/city-snapshot.ts)
+- Validazione cataloghi gameplay lato backend implementata in [backend/src/game-data/catalogs.ts](/C:/Pampa's%20skylines/backend/src/game-data/catalogs.ts)
+- Test backend esistenti:
+  - [backend/tests/api.test.ts](/C:/Pampa's%20skylines/backend/tests/api.test.ts)
+  - [backend/tests/catalogs.test.ts](/C:/Pampa's%20skylines/backend/tests/catalogs.test.ts)
+
+**Cosa è verificato**
+- `npm.cmd run build` in `backend` passa
+- `npm.cmd test` in `backend` passa
+- I test backend coprono:
+  - login/profile
+  - upload snapshot
+  - duplicate version
+  - stale upload
+  - checksum mismatch
+  - migrazione snapshot legacy
+  - version manifest
+  - validazione cataloghi JSON
+
+**Cosa NON è ancora fatto**
+- Nessuna scena Unity reale
+- Nessun `MonoBehaviour`, camera controller, input system wiring o bootstrap scene
+- Nessun tool di editing strade/zoning/buildings
+- Nessun rendering terreno, chunking, mesh generation, props, UI o HUD
+- Nessun import reale in Unity ancora eseguito
+- Nessuna compilazione C# effettiva dentro Unity ancora verificata
+- Nessuna build `.exe` o `.apk`
+- Nessuna integrazione Firebase reale con credenziali vere
+- Nessun trasporto pubblico, industria avanzata, politiche, disastri, audio, modding
+- Nessuna pipeline store/update oltre al `version-manifest`
+- Nessuna compatibilità Android reale verificata
+
+**Punti delicati / rischi noti**
+- Il codice C# non è stato compilato con Unity ancora, quindi potrebbero emergere errori di compatibilità API o serializzazione al primo import.
+- `SimulationConfigLoader.LoadDefault()` usa path filesystem candidati; potrebbe dover essere adattato quando il progetto gira davvero dentro Unity o su Android build.
+- I test C# EditMode esistono in [SimulationEngineTests.cs](/C:/Pampa's%20skylines/unity/Assets/Game/Tests/EditMode/SimulationEngineTests.cs), ma non sono ancora stati eseguiti.
+- Non ci sono file `.meta` generati da Unity finché il progetto non viene aperto nell’editor.
+- Il backend è file-based; Firebase è solo adapter opzionale, non operativo end-to-end.
+
+**Priorità consigliata**
+- Aprire il progetto Unity e risolvere i primi errori di compilazione del lato C#.
+- Verificare che gli assembly `asmdef` si risolvano e che i test EditMode compilino.
+- Implementare la prima scena bootstrap PC con:
+  - camera
+  - tick loop
+  - caricamento `SimulationConfig`
+  - debug panels
+  - road/zoning command dispatch
+- Poi implementare la vista top-down minima e gli strumenti di editing.
+- Solo dopo, collegare davvero `BackendApiClient` al flusso di save/load in runtime Unity.
+
+**File chiave da leggere per primi**
+- [unity/Assets/Game/Simulation/Runtime/SimulationEngine.cs](/C:/Pampa's%20skylines/unity/Assets/Game/Simulation/Runtime/SimulationEngine.cs)
+- [unity/Assets/Game/Simulation/Runtime/CommandExecutor.cs](/C:/Pampa's%20skylines/unity/Assets/Game/Simulation/Runtime/CommandExecutor.cs)
+- [unity/Assets/Game/Core/Runtime/SimulationConfig.cs](/C:/Pampa's%20skylines/unity/Assets/Game/Core/Runtime/SimulationConfig.cs)
+- [unity/Assets/Game/SaveSync/Runtime/CitySaveCodec.cs](/C:/Pampa's%20skylines/unity/Assets/Game/SaveSync/Runtime/CitySaveCodec.cs)
+- [backend/src/storage/file-store.ts](/C:/Pampa's%20skylines/backend/src/storage/file-store.ts)
+- [backend/src/contracts.ts](/C:/Pampa's%20skylines/backend/src/contracts.ts)
+- [docs/architecture.md](/C:/Pampa's%20skylines/docs/architecture.md)
+
+**Messaggio breve**
+“Il repo ha già core C#, replay deterministico, snapshot con hash/migration, cataloghi JSON esterni e backend sync idempotente testato. Manca tutta la parte Unity reale: compilazione in editor, scene, input, camera, rendering e tool di costruzione. Prima task: aprire `unity`, sistemare gli errori di compile/import e costruire la prima scena PC che usa il core già scritto.”

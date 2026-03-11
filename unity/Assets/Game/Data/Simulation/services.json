@@ -1,0 +1,76 @@
+{
+  "serviceDefinitions": [
+    {
+      "serviceType": "Electricity",
+      "buildCost": 1500.0,
+      "dailyUpkeep": 15.0,
+      "defaultCoverageRadius": 6.0,
+      "refundFactor": 0.35,
+      "landValueBonus": 0.0,
+      "countsAsUtility": true
+    },
+    {
+      "serviceType": "Water",
+      "buildCost": 1200.0,
+      "dailyUpkeep": 12.0,
+      "defaultCoverageRadius": 6.0,
+      "refundFactor": 0.35,
+      "landValueBonus": 0.0,
+      "countsAsUtility": true
+    },
+    {
+      "serviceType": "Sewage",
+      "buildCost": 1200.0,
+      "dailyUpkeep": 12.0,
+      "defaultCoverageRadius": 6.0,
+      "refundFactor": 0.35,
+      "landValueBonus": 0.0,
+      "countsAsUtility": true
+    },
+    {
+      "serviceType": "Waste",
+      "buildCost": 1800.0,
+      "dailyUpkeep": 18.0,
+      "defaultCoverageRadius": 6.0,
+      "refundFactor": 0.35,
+      "landValueBonus": 0.0,
+      "countsAsUtility": true
+    },
+    {
+      "serviceType": "Fire",
+      "buildCost": 5000.0,
+      "dailyUpkeep": 50.0,
+      "defaultCoverageRadius": 8.0,
+      "refundFactor": 0.35,
+      "landValueBonus": 0.05,
+      "countsAsUtility": false
+    },
+    {
+      "serviceType": "Police",
+      "buildCost": 5200.0,
+      "dailyUpkeep": 52.0,
+      "defaultCoverageRadius": 8.0,
+      "refundFactor": 0.35,
+      "landValueBonus": 0.05,
+      "countsAsUtility": false
+    },
+    {
+      "serviceType": "Health",
+      "buildCost": 6500.0,
+      "dailyUpkeep": 65.0,
+      "defaultCoverageRadius": 8.0,
+      "refundFactor": 0.35,
+      "landValueBonus": 0.05,
+      "countsAsUtility": false
+    },
+    {
+      "serviceType": "Education",
+      "buildCost": 7000.0,
+      "dailyUpkeep": 70.0,
+      "defaultCoverageRadius": 8.0,
+      "refundFactor": 0.35,
+      "landValueBonus": 0.05,
+      "countsAsUtility": false
+    }
+  ]
+}

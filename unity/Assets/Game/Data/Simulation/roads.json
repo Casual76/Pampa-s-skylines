@@ -1,0 +1,21 @@
+{
+  "defaultRoadTypeId": "road-2lane",
+  "roadTypes": [
+    {
+      "id": "road-2lane",
+      "lanes": 2,
+      "capacityPerLane": 600,
+      "buildCostPerUnit": 18.0,
+      "maintenanceCostPerUnit": 0.75,
+      "refundFactor": 0.22
+    },
+    {
+      "id": "road-4lane",
+      "lanes": 4,
+      "capacityPerLane": 700,
+      "buildCostPerUnit": 32.0,
+      "maintenanceCostPerUnit": 1.40,
+      "refundFactor": 0.22
+    }
+  ]
+}

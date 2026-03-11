@@ -1,0 +1,691 @@
+{
+  "spawnIntervalHours": 4.0,
+  "acts": [
+    {
+      "id": "act1",
+      "displayName": "Fondazione",
+      "minPopulation": 0,
+      "maxPopulation": 319,
+      "objectivePopulationTarget": 320,
+      "objectiveDescription": "Raggiungi 320 abitanti per avviare l'espansione."
+    },
+    {
+      "id": "act2",
+      "displayName": "Espansione",
+      "minPopulation": 320,
+      "maxPopulation": 949,
+      "objectivePopulationTarget": 950,
+      "objectiveDescription": "Consolida servizi e lavoro fino a 950 abitanti."
+    },
+    {
+      "id": "act3",
+      "displayName": "Stabilizzazione",
+      "minPopulation": 950,
+      "maxPopulation": 0,
+      "objectivePopulationTarget": 1500,
+      "objectiveDescription": "Raggiungi 1500 abitanti mantenendo servizi e traffico sotto controllo."
+    }
+  ],
+  "events": [
+    {
+      "id": "power-surge",
+      "title": "Sbalzo di rete elettrica",
+      "description": "Un trasformatore e al limite. Intervenire ora evita disservizi.",
+      "weight": 5,
+      "minPopulation": 30,
+      "maxPopulation": 0,
+      "minActIndex": 0,
+      "cooldownHours": 20.0,
+      "choices": [
+        {
+          "id": "repair-now",
+          "label": "Ripara subito",
+          "description": "Intervento tecnico immediato.",
+          "effect": {
+            "cashDelta": -1800.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "grid-stable",
+                "label": "Rete stabilizzata",
+                "durationHours": 16.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 1.06,
+                "serviceCostMultiplier": 1.02,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ],
+            "delayedConsequences": [
+              {
+                "id": "grid-audit",
+                "label": "Audit straordinario rete",
+                "delayHours": 12.0,
+                "followUpEventId": "",
+                "cashDelta": -600.0,
+                "loanDelta": 0.0,
+                "residentialDemandDelta": 0.0,
+                "commercialDemandDelta": 0.0,
+                "industrialDemandDelta": 0.0,
+                "officeDemandDelta": 0.0,
+                "landValueDelta": 0.02,
+                "utilityCoverageDelta": 0.0,
+                "timedModifiers": []
+              }
+            ]
+          }
+        },
+        {
+          "id": "defer-repair",
+          "label": "Rimanda i lavori",
+          "description": "Risparmi oggi, rischi rallentamenti.",
+          "effect": {
+            "cashDelta": 700.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": -0.08,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "grid-instability",
+                "label": "Instabilita di rete",
+                "durationHours": 18.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 0.86,
+                "serviceCostMultiplier": 1.08,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ],
+            "delayedConsequences": [
+              {
+                "id": "blackout-aftershock",
+                "label": "Blackout localizzato",
+                "delayHours": 10.0,
+                "followUpEventId": "flood-alert",
+                "cashDelta": -900.0,
+                "loanDelta": 0.0,
+                "residentialDemandDelta": -0.04,
+                "commercialDemandDelta": -0.02,
+                "industrialDemandDelta": 0.0,
+                "officeDemandDelta": 0.0,
+                "landValueDelta": -0.03,
+                "utilityCoverageDelta": -0.04,
+                "timedModifiers": [
+                  {
+                    "id": "blackout-disruption",
+                    "label": "Interruzioni elettriche",
+                    "durationHours": 10.0,
+                    "residentialDemandMultiplier": 0.96,
+                    "commercialDemandMultiplier": 0.95,
+                    "industrialDemandMultiplier": 0.97,
+                    "officeDemandMultiplier": 0.96,
+                    "growthMultiplier": 0.90,
+                    "serviceCostMultiplier": 1.0,
+                    "roadMaintenanceMultiplier": 1.0,
+                    "commuteMinutesMultiplier": 1.0,
+                    "taxIncomeMultiplier": 0.97
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "street-market",
+      "title": "Mercato civico del weekend",
+      "description": "I commercianti chiedono spazio e supporto logistico.",
+      "weight": 4,
+      "minPopulation": 60,
+      "maxPopulation": 0,
+      "minActIndex": 0,
+      "cooldownHours": 22.0,
+      "choices": [
+        {
+          "id": "sponsor-market",
+          "label": "Sponsorizza il mercato",
+          "description": "Aumenti attrattivita commerciale.",
+          "effect": {
+            "cashDelta": -900.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.12,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "market-weekend",
+                "label": "Afflusso commerciale",
+                "durationHours": 16.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.18,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 1.0,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.08,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "id": "tax-market",
+          "label": "Concedi permessi a pagamento",
+          "description": "Incassi immediati ma meno entusiasmo.",
+          "effect": {
+            "cashDelta": 1400.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": -0.05,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "waste-strike",
+      "title": "Sciopero raccolta rifiuti",
+      "description": "Il servizio rifiuti rischia blocchi su piu quartieri.",
+      "weight": 5,
+      "minPopulation": 160,
+      "maxPopulation": 0,
+      "minActIndex": 1,
+      "cooldownHours": 26.0,
+      "choices": [
+        {
+          "id": "bonus-shifts",
+          "label": "Straordinari immediati",
+          "description": "Servizio ripristinato ma con costo extra.",
+          "effect": {
+            "cashDelta": -2400.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "waste-overtime",
+                "label": "Straordinari servizi",
+                "durationHours": 24.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 1.0,
+                "serviceCostMultiplier": 1.15,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "id": "wait-it-out",
+          "label": "Attendi trattativa",
+          "description": "Riduci la spesa ma subisci malus temporanei.",
+          "effect": {
+            "cashDelta": 0.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": -0.10,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": -0.08,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "waste-delay",
+                "label": "Disagio rifiuti",
+                "durationHours": 20.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 0.84,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "flood-alert",
+      "title": "Allerta idrica improvvisa",
+      "description": "Piogge intense mettono in stress rete acqua e fogne.",
+      "weight": 4,
+      "minPopulation": 260,
+      "maxPopulation": 0,
+      "minActIndex": 1,
+      "cooldownHours": 24.0,
+      "choices": [
+        {
+          "id": "emergency-crews",
+          "label": "Squadre d'emergenza",
+          "description": "Limiti i danni con investimento immediato.",
+          "effect": {
+            "cashDelta": -2100.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "flood-controlled",
+                "label": "Rete sotto controllo",
+                "durationHours": 16.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 1.03,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "id": "minimal-response",
+          "label": "Risposta minima",
+          "description": "Tagli i costi ma il disagio rallenta la citta.",
+          "effect": {
+            "cashDelta": 500.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": -0.08,
+            "timedModifiers": [
+              {
+                "id": "flood-disruption",
+                "label": "Disservizi idrici",
+                "durationHours": 18.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 0.82,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tax-protest",
+      "title": "Proteste fiscali",
+      "description": "Comitati cittadini contestano il peso fiscale attuale.",
+      "weight": 4,
+      "minPopulation": 340,
+      "maxPopulation": 0,
+      "minActIndex": 1,
+      "cooldownHours": 20.0,
+      "choices": [
+        {
+          "id": "cut-taxes",
+          "label": "Riduci la pressione",
+          "description": "Perdi cassa ma rilanci fiducia e crescita.",
+          "effect": {
+            "cashDelta": -1000.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.08,
+            "commercialDemandDelta": 0.05,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "tax-relief",
+                "label": "Sollievo fiscale",
+                "durationHours": 20.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 1.08,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 0.94
+              }
+            ]
+          }
+        },
+        {
+          "id": "hold-line",
+          "label": "Mantieni linea dura",
+          "description": "Preservi entrate ma aumenti tensione.",
+          "effect": {
+            "cashDelta": 1200.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": -0.06,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": -0.04,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [],
+            "delayedConsequences": [
+              {
+                "id": "tax-backlash",
+                "label": "Nuova ondata di proteste",
+                "delayHours": 14.0,
+                "followUpEventId": "",
+                "cashDelta": 0.0,
+                "loanDelta": 0.0,
+                "residentialDemandDelta": -0.03,
+                "commercialDemandDelta": -0.02,
+                "industrialDemandDelta": 0.0,
+                "officeDemandDelta": -0.03,
+                "landValueDelta": -0.02,
+                "utilityCoverageDelta": 0.0,
+                "timedModifiers": [
+                  {
+                    "id": "tax-tension",
+                    "label": "Tensione civica",
+                    "durationHours": 16.0,
+                    "residentialDemandMultiplier": 0.95,
+                    "commercialDemandMultiplier": 0.96,
+                    "industrialDemandMultiplier": 1.0,
+                    "officeDemandMultiplier": 0.95,
+                    "growthMultiplier": 0.92,
+                    "serviceCostMultiplier": 1.03,
+                    "roadMaintenanceMultiplier": 1.0,
+                    "commuteMinutesMultiplier": 1.0,
+                    "taxIncomeMultiplier": 0.98
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "startup-district",
+      "title": "Consorzio startup",
+      "description": "Investitori offrono un hub innovazione con cofinanziamento.",
+      "weight": 3,
+      "minPopulation": 980,
+      "maxPopulation": 0,
+      "minActIndex": 2,
+      "cooldownHours": 30.0,
+      "choices": [
+        {
+          "id": "fund-hub",
+          "label": "Finanzia il distretto",
+          "description": "Spesa iniziale, forte spinta uffici e occupazione.",
+          "effect": {
+            "cashDelta": -4200.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.18,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "startup-boom",
+                "label": "Boom uffici",
+                "durationHours": 28.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.22,
+                "growthMultiplier": 1.10,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "id": "decline-hub",
+          "label": "Rifiuta proposta",
+          "description": "Nessun costo ma opportunita persa.",
+          "effect": {
+            "cashDelta": 0.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": -0.06,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "flu-wave",
+      "title": "Picco influenzale",
+      "description": "Aumentano assenze e pressione sui servizi pubblici.",
+      "weight": 4,
+      "minPopulation": 900,
+      "maxPopulation": 0,
+      "minActIndex": 2,
+      "cooldownHours": 24.0,
+      "choices": [
+        {
+          "id": "health-campaign",
+          "label": "Campagna sanitaria",
+          "description": "Riduci l'impatto con un piano urgente.",
+          "effect": {
+            "cashDelta": -2500.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "health-response",
+                "label": "Risposta sanitaria",
+                "durationHours": 18.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 0.98,
+                "serviceCostMultiplier": 1.10,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "id": "limited-response",
+          "label": "Intervento limitato",
+          "description": "Contieni i costi ma rallenti la citta.",
+          "effect": {
+            "cashDelta": -600.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": -0.08,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": -0.05,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "flu-disruption",
+                "label": "Assenteismo diffuso",
+                "durationHours": 18.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 0.82,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.0,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobility-plan",
+      "title": "Piano mobilita urbana",
+      "description": "I tecnici propongono interventi rapidi per fluidificare il traffico.",
+      "weight": 3,
+      "minPopulation": 700,
+      "maxPopulation": 0,
+      "minActIndex": 2,
+      "cooldownHours": 28.0,
+      "choices": [
+        {
+          "id": "execute-plan",
+          "label": "Applica il piano",
+          "description": "Migliori il traffico con investimento mirato.",
+          "effect": {
+            "cashDelta": -3200.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "mobility-upgrade",
+                "label": "Traffico ottimizzato",
+                "durationHours": 24.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 1.0,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.06,
+                "commuteMinutesMultiplier": 0.86,
+                "taxIncomeMultiplier": 1.0
+              }
+            ],
+            "delayedConsequences": [
+              {
+                "id": "maintenance-spike",
+                "label": "Picco manutenzione rete",
+                "delayHours": 18.0,
+                "followUpEventId": "",
+                "cashDelta": -900.0,
+                "loanDelta": 0.0,
+                "residentialDemandDelta": 0.0,
+                "commercialDemandDelta": 0.0,
+                "industrialDemandDelta": 0.0,
+                "officeDemandDelta": 0.0,
+                "landValueDelta": 0.01,
+                "utilityCoverageDelta": 0.0,
+                "timedModifiers": [
+                  {
+                    "id": "maintenance-tail",
+                    "label": "Coda manutenzione",
+                    "durationHours": 12.0,
+                    "residentialDemandMultiplier": 1.0,
+                    "commercialDemandMultiplier": 1.0,
+                    "industrialDemandMultiplier": 1.0,
+                    "officeDemandMultiplier": 1.0,
+                    "growthMultiplier": 1.02,
+                    "serviceCostMultiplier": 1.0,
+                    "roadMaintenanceMultiplier": 1.12,
+                    "commuteMinutesMultiplier": 0.94,
+                    "taxIncomeMultiplier": 1.0
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "skip-plan",
+          "label": "Posticipa il piano",
+          "description": "Eviti costi oggi ma cresce la congestione.",
+          "effect": {
+            "cashDelta": 0.0,
+            "loanDelta": 0.0,
+            "residentialDemandDelta": 0.0,
+            "commercialDemandDelta": 0.0,
+            "industrialDemandDelta": 0.0,
+            "officeDemandDelta": 0.0,
+            "landValueDelta": 0.0,
+            "utilityCoverageDelta": 0.0,
+            "timedModifiers": [
+              {
+                "id": "mobility-strain",
+                "label": "Congestione crescente",
+                "durationHours": 20.0,
+                "residentialDemandMultiplier": 1.0,
+                "commercialDemandMultiplier": 1.0,
+                "industrialDemandMultiplier": 1.0,
+                "officeDemandMultiplier": 1.0,
+                "growthMultiplier": 1.0,
+                "serviceCostMultiplier": 1.0,
+                "roadMaintenanceMultiplier": 1.0,
+                "commuteMinutesMultiplier": 1.18,
+                "taxIncomeMultiplier": 1.0
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

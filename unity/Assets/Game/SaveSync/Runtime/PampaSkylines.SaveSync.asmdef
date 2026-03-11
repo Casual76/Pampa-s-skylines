@@ -1,0 +1,7 @@
+{
+  "name": "PampaSkylines.SaveSync",
+  "rootNamespace": "PampaSkylines.SaveSync",
+  "references": [
+    "PampaSkylines.Core"
+  ]
+}

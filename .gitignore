@@ -1,0 +1,42 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+Recordings/
+
+# Unity generated
+*.csproj
+*.unityproj
+*.sln
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Asset meta backups
+*.bak
+
+# Node
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local data
+backend/.data/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

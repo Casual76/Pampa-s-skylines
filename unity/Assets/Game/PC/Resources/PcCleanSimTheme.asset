@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce47bde549400c7488d53420bba9c176, type: 3}
+  m_Name: PcCleanSimTheme
+  m_EditorClassIdentifier: PampaSkylines.PC::PampaSkylines.PC.PcVisualTheme
+  GroundMaterial: {fileID: 2100000, guid: 7ff4b63e06f83ef49b56d2abc290a61d, type: 2}
+  GridLineMaterial: {fileID: 2100000, guid: 3b79dfe6dc30aee4ea0ec68afe67fe90, type: 2}
+  RoadMaterial: {fileID: 2100000, guid: 462c74b393c204f44950805a5ffaf750, type: 2}
+  ZoneMaterial: {fileID: 2100000, guid: ec45c7c46dae09c429fd5a06515e32e5, type: 2}
+  BuildingMaterial: {fileID: 2100000, guid: 0ccb60c5800c1354cb78c872401b6018, type: 2}
+  HoverMaterial: {fileID: 2100000, guid: 6cf449f09c478d64f86caaa52e4f9444, type: 2}
+  DragPreviewMaterial: {fileID: 2100000, guid: 4d8fb2e9d4d8acc4589180ec5bd544d4, type: 2}
+  CameraBackgroundColor: {r: 0.66, g: 0.73, b: 0.77, a: 1}
+  GroundColor: {r: 0.44, g: 0.5, b: 0.4, a: 1}
+  GridMinorColor: {r: 0.46, g: 0.52, b: 0.47, a: 0.28}
+  GridMajorColor: {r: 0.3, g: 0.37, b: 0.33, a: 0.44}
+  RoadColor: {r: 0.16, g: 0.17, b: 0.19, a: 1}
+  RoadCongestedColor: {r: 0.86, g: 0.24, b: 0.18, a: 1}
+  ResidentialColor: {r: 0.26, g: 0.62, b: 0.33, a: 0.36}
+  CommercialColor: {r: 0.2, g: 0.53, b: 0.73, a: 0.36}
+  IndustrialColor: {r: 0.68, g: 0.5, b: 0.17, a: 0.36}
+  OfficeColor: {r: 0.31, g: 0.44, b: 0.68, a: 0.36}
+  ElectricityColor: {r: 0.9, g: 0.69, b: 0.18, a: 1}
+  WaterColor: {r: 0.18, g: 0.57, b: 0.82, a: 1}
+  SewageColor: {r: 0.41, g: 0.51, b: 0.24, a: 1}
+  WasteColor: {r: 0.51, g: 0.44, b: 0.18, a: 1}
+  FireColor: {r: 0.79, g: 0.26, b: 0.21, a: 1}
+  PoliceColor: {r: 0.19, g: 0.3, b: 0.65, a: 1}
+  HealthColor: {r: 0.16, g: 0.61, b: 0.47, a: 1}
+  EducationColor: {r: 0.68, g: 0.4, b: 0.21, a: 1}
+  HoverOutlineColor: {r: 0.98, g: 0.98, b: 0.98, a: 0.95}
+  DragFillColor: {r: 0.17, g: 0.6, b: 0.84, a: 0.2}
+  DragOutlineColor: {r: 0.15, g: 0.56, b: 0.79, a: 0.85}
+  HudPanelColor: {r: 0.08, g: 0.1, b: 0.13, a: 0.9}
+  HudPanelSecondaryColor: {r: 0.12, g: 0.15, b: 0.19, a: 0.93}
+  HudCardColor: {r: 0.15, g: 0.18, b: 0.22, a: 0.97}
+  HudAccentColor: {r: 0.2, g: 0.72, b: 0.74, a: 1}
+  HudTextColor: {r: 0.92, g: 0.95, b: 0.97, a: 1}
+  HudMutedTextColor: {r: 0.66, g: 0.73, b: 0.79, a: 1}
+  HudButtonColor: {r: 0.2, g: 0.25, b: 0.31, a: 1}
+  HudButtonActiveColor: {r: 0.25, g: 0.61, b: 0.75, a: 1}
+  HudButtonTextColor: {r: 0.96, g: 0.97, b: 0.98, a: 1}
+  HudWarningColor: {r: 0.93, g: 0.63, b: 0.22, a: 1}
+  HudErrorColor: {r: 0.9, g: 0.36, b: 0.32, a: 1}

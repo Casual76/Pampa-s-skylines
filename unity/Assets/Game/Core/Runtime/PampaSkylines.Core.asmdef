@@ -1,0 +1,7 @@
+{
+  "name": "PampaSkylines.Core",
+  "rootNamespace": "PampaSkylines.Core",
+  "references": [
+    "PampaSkylines.Shared"
+  ]
+}

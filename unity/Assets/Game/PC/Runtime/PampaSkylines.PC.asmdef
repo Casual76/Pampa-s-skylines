@@ -1,0 +1,12 @@
+{
+  "name": "PampaSkylines.PC",
+  "rootNamespace": "PampaSkylines.PC",
+  "references": [
+    "PampaSkylines.Shared",
+    "PampaSkylines.Core",
+    "PampaSkylines.Commands",
+    "PampaSkylines.Simulation",
+    "PampaSkylines.SaveSync",
+    "Unity.TextMeshPro"
+  ]
+}

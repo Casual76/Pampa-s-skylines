@@ -1,0 +1,17 @@
+{
+  "name": "PampaSkylines.Tests.EditMode",
+  "rootNamespace": "PampaSkylines.Tests",
+  "references": [
+    "PampaSkylines.Shared",
+    "PampaSkylines.Core",
+    "PampaSkylines.Commands",
+    "PampaSkylines.Simulation",
+    "PampaSkylines.SaveSync"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "PampaSkylines.Simulation",
+  "rootNamespace": "PampaSkylines.Simulation",
+  "references": [
+    "PampaSkylines.Shared",
+    "PampaSkylines.Core",
+    "PampaSkylines.Commands"
+  ]
+}
