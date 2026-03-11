@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Pampa Skylines
 
 Bootstrap monorepo per un city builder AI-first stile Cities: Skylines, con:
@@ -23,7 +24,7 @@ Questa repository implementa una vertical slice giocabile del core con focus dem
 - companion Android esteso con dashboard KPI, alert prioritizzati e quick actions su eventi/tasse/tempo
 - test backend per sync, migrazione snapshot e validazione cataloghi
 
-Non include ancora asset finali, pipeline build completa, sistemi avanzati (trasporto pubblico/disastri/modding) o full UI Android.
+Non include ancora asset finali, pipeline build completa, sistemi avanzati (trasporto pubblico/disastri) o full UI Android.
 
 ## Struttura
 
@@ -42,7 +43,3 @@ npm.cmd run create-user -- --username amico --password segreta
 npm.cmd test
 npm.cmd run dev
 ```
-
-## Unity
-
-Aprire la cartella `unity` con Unity 6 URP e lasciare a Unity la generazione dei file di progetto locali. In questo ambiente la compilazione Unity non è stata eseguita perché non è presente il toolchain Unity/.NET SDK.

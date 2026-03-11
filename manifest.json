@@ -1,0 +1,21 @@
+{
+    "app": {
+        "id": "Pampa's skylines",
+        "name": "Pampa's skylines",
+        "description": "",
+        "packageName": "",
+        "iconUrl": "",
+        "category": "Giochi",
+        "developer": "Pampa",
+        "screenshots": [],
+        "repository": {
+            "repoOwner": "Casual76",
+            "repoName": "Pampa-s-skylines",
+            "manifestPath": "manifest.json",
+            "ref": ""
+        },
+        "stable": null,
+        "beta": null,
+        "history": []
+    }
+}
